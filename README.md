@@ -33,8 +33,9 @@ To drive the car, send the following command with the specified parameters:
 
 ### Lights Parameter Values
 - **Front and back lights on**: `0x00`
+- **Front and back lights on braking**: `0x01`
 - **Front and back lights off**: `0x04`
-- **Front lights off, back lights on**: `0x05`
+- **Front lights off, back lights on braking**: `0x05`
 
 ## Resources
 For more details on the LEGO Wireless Protocol, refer to the [LEGO BLE Wireless Protocol documentation](https://lego.github.io/lego-ble-wireless-protocol-docs/).
