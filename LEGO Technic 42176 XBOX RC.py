@@ -6,7 +6,7 @@
 # pip intall pygame
 # pip install bleak
 
-import os, sys
+import os, sys, platform
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 # crucial! otherwise Bleak will raise exception
 # see https://bleak.readthedocs.io/en/latest/troubleshooting.html#windows-bugs
@@ -50,11 +50,14 @@ class TechnicMoveHub:
                 print(f"Found device: {device.name} with address: {device.address}")
                 self.client = BleakClient(device)
 
-                
                 await self.client.connect()
                 if self.client.is_connected:
                     print(f"Connected to {self.device_name}")
-                    
+
+                    if platform.system() == "Darwin":
+                        print(f"Skipping pairing on OS X")
+                        return True
+
                     paired = await self.client.pair(protection_level = 2) # this is crucial!!!
                     if not paired:
                         print(f"could not pair")
